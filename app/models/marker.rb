@@ -1,5 +1,5 @@
 class Marker < ActiveRecord::Base
-  attr_accessible :latitude, :longitude
+  attr_accessible :latitude, :longitude, :marker_type, :description
 
   validates_presence_of :latitude
   validates_presence_of :longitude

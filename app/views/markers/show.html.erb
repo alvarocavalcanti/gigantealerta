@@ -10,6 +10,15 @@
   <%= @marker.longitude %>
 </p>
 
+<p>
+  <b>Type:</b>
+  <%= @marker.marker_type %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @marker.description %>
+</p>
 
 <%= link_to 'Edit', edit_marker_path(@marker) %> |
 <%= link_to 'Back', markers_path %>

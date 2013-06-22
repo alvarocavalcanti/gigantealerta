@@ -23,7 +23,7 @@ describe MarkersController do
   # This should return the minimal set of attributes required to create a valid
   # Marker. As you add validations to Marker, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "latitude" => "1.5", "longitude" => "1.5" } }
+  let(:valid_attributes) { { "latitude" => "1.5", "longitude" => "1.5", "marker_type" => "type", "description" => "description" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
