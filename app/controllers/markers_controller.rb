@@ -6,7 +6,12 @@ class MarkersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @markers }
+      format.json {
+        @markers.map!{ |marker|
+          marker.to_json(:only => [:latitude, :longitude])
+        }
+        render json: @markers
+      }
     end
   end
 
