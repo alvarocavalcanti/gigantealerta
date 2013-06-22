@@ -17,7 +17,6 @@ development:
   encoding: unicode
   database: vinegar_development
   pool: 5
-  username: snark
   username: vinegar
   password: vinegar
   host: localhost
