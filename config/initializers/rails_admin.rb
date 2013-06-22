@@ -14,6 +14,18 @@ RailsAdmin.config do |config|
   # RailsAdmin may need a way to know who the current user is]
   config.current_user_method { current_admin } # auto-generated
 
+
+  config.model 'Marker' do
+    list do
+      field :marker_type
+      field :description
+      field :latitude
+      field :longitude
+      field :created_at
+    end
+  end
+
+
   # If you want to track changes on your models:
   # config.audit_with :history, 'Admin'
 
@@ -64,13 +76,13 @@ RailsAdmin.config do |config|
 
   #   # Found columns:
 
-  #     configure :id, :integer 
-  #     configure :latitude, :float 
-  #     configure :longitude, :float 
-  #     configure :created_at, :datetime 
-  #     configure :updated_at, :datetime 
-  #     configure :marker_type, :string 
-  #     configure :description, :string 
+  #     configure :id, :integer
+  #     configure :latitude, :float
+  #     configure :longitude, :float
+  #     configure :created_at, :datetime
+  #     configure :updated_at, :datetime
+  #     configure :marker_type, :string
+  #     configure :description, :string
 
   #   # Cross-section configuration:
 
