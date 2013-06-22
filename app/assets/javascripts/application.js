@@ -61,7 +61,7 @@ $(function(){
         var listenerHandle = google.maps.event.addListener(map, 'click', function(event) {
             params['longitude'] = event.latLng.lng();
             params['latitude'] = event.latLng.lat();
-            params['description'] = prompt("Describe");
+            params['description'] = prompt("Describe") || "";
             $.post("/markers.json", {marker: params}, function(data){
                 add_marker_to_map(params);
                 google.maps.event.removeListener(listenerHandle);
@@ -69,5 +69,5 @@ $(function(){
         });
     });
     
-    // window.setTimeout(load_markers, 60000);
+   window.setTimeout(load_markers, 60000);
 });
