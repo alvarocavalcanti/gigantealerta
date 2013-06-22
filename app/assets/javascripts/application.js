@@ -48,5 +48,9 @@ $(function(){
         marker_types.removeClass('hide');
     });
     
+    marker_types.find("a").on("click", function(){
+        
+    });
+    
     // window.setTimeout(load_markers, 60000);
 });
