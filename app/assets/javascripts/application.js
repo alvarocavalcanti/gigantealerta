@@ -58,6 +58,9 @@ $(function(){
         var params = {}, element = $(this);
         params['marker_type'] = element.attr("data-name");
         marker_types.addClass('hide');
+        if (params['marker_type']=="Cancel"){
+            return false;
+        }
         var listenerHandle = google.maps.event.addListener(map, 'click', function(event) {
             params['longitude'] = event.latLng.lng();
             params['latitude'] = event.latLng.lat();
