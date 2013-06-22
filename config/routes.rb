@@ -1,5 +1,5 @@
 Vinegar::Application.routes.draw do
-  resources :markers
+  resources :markers, :only => [:index, :create, :show]
 
 
   root :to => 'home#index'
