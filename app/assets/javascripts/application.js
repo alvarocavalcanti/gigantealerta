@@ -1,6 +1,12 @@
 
 $(function(){
     var map, infoWindow;
+    var imageMap = {
+        "Conflict": "/assets/conflict.png",
+        "Depredation": "/assets/depredation.png",
+        "Meeting Point": "/assets/meetingPoint.png",
+        "Police": "/assets/policeLine.png",
+    };
     function setupMap() {
       if (navigator.geolocation) {
           map = navigator.geolocation.getCurrentPosition(initialize);
@@ -21,7 +27,7 @@ $(function(){
     }
     
     function add_marker_to_map(point){
-        var marker = new google.maps.Marker({ position: new google.maps.LatLng(point.latitude,  point.longitude), map: map}),
+        var marker = new google.maps.Marker({ position: new google.maps.LatLng(point.latitude,  point.longitude), map: map, icon: imageMap[point.marker_type]}),
             infoWindow,
             content = "<b>"+ point.marker_type +"</b><br/>" + point.description;
         infoWindow = new google.maps.InfoWindow({
@@ -49,7 +55,18 @@ $(function(){
     });
     
     marker_types.find("a").on("click", function(){
-        
+        var params = {}, element = $(this);
+        params['marker_type'] = element.attr("data-name");
+        marker_types.addClass('hide');
+        var listenerHandle = google.maps.event.addListener(map, 'click', function(event) {
+            params['longitude'] = event.latLng.lng();
+            params['latitude'] = event.latLng.lat();
+            params['description'] = prompt("Describe");
+            $.post("/markers.json", {marker: params}, function(data){
+                add_marker_to_map(params);
+                google.maps.event.removeListener(listenerHandle);
+            });
+        });
     });
     
     // window.setTimeout(load_markers, 60000);

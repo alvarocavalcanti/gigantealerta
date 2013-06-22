@@ -18,17 +18,17 @@ body { height: 100%; margin: 0; padding: 0 }
 #add-marker img{ 
     position: absolute;
     bottom: 5px;
-    left: 47%;
+    left: 40%;
     z-index: 99999;
-    width: 50px;
-    height: 50px;
+    width: 250px;
+    height: 250px;
 }
 
 #marker-types{
     padding: 5px;
     position: absolute;
-    bottom: 60px;
-    left: 47%;
+    bottom: 260px;
+    left: 44%;
     z-index: 99999;
     list-style: none inside none;
     border: 2px solid black;
@@ -36,8 +36,13 @@ body { height: 100%; margin: 0; padding: 0 }
     background-color: #d0ccbf;
 }
 
+#marker-types li{
+    margin: 10px;
+}
+
 #marker-types a{
     text-decoration: none;
+    font-size: 30px;
 }
 
 .hide{
