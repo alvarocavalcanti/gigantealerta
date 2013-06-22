@@ -2,7 +2,7 @@ class MarkersController < ApplicationController
   # GET /markers
   # GET /markers.json
   def index
-    @markers = Marker.all
+    @markers = Marker.created_in_last_30_minutes.all
 
     respond_to do |format|
       format.html # index.html.erb

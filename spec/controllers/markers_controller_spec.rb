@@ -31,10 +31,30 @@ describe MarkersController do
   let(:valid_session) { {} }
 
   describe "GET index" do
+
+    before do
+      Timecop.return
+    end
+
     it "assigns all markers as @markers" do
       marker = Marker.create! valid_attributes
       get :index, {}, valid_session
       assigns(:markers).should eq([marker])
+    end
+
+    it "should only show the markers that was created in last 30 mins" do
+      new_time = Time.local(2008, 9, 1, 12, 0, 0)
+      Timecop.freeze(new_time)
+      old_markers = []
+      old_markers << Marker.create!(valid_attributes)
+      old_markers << Marker.create!(valid_attributes)
+      Timecop.return
+
+      markers = []
+      markers << Marker.create!(valid_attributes)
+      markers << Marker.create!(valid_attributes)
+      get :index, {}, valid_session
+      assigns(:markers).should eq(markers)
     end
   end
 

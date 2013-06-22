@@ -17,8 +17,7 @@ development:
   encoding: unicode
   database: vinegar_development
   pool: 5
-  username: vinegar
-  password: vinegar
+  username: snark
   host: localhost
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -44,8 +43,7 @@ test:
   encoding: unicode
   database: vinegar_test
   pool: 5
-  username: vinegar
-  password: vinegar
+  username: snark
   host: localhost
 
 production:
