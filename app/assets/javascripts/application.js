@@ -42,5 +42,11 @@ $(function(){
     
     google.maps.event.addDomListener(window, 'load', setupMap);
     
+    var marker_types = $("#marker-types");
+    
+    $("#add-marker").on('click', function(){
+        marker_types.removeClass('hide');
+    });
+    
     // window.setTimeout(load_markers, 60000);
 });
