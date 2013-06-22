@@ -1,6 +1,6 @@
 
 $(function(){
-    var map;
+    var map, infoWindow;
     function setupMap() {
       if (navigator.geolocation) {
           map = navigator.geolocation.getCurrentPosition(initialize);
@@ -16,16 +16,31 @@ $(function(){
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        infoWindow = new google.maps.InfoWindow();
         load_markers();
+    }
+    
+    function add_marker_to_map(point){
+        var marker = new google.maps.Marker({ position: new google.maps.LatLng(point.latitude,  point.longitude), map: map}),
+            infoWindow,
+            content = "<b>"+ point.marker_type +"</b><br/>" + point.description;
+        infoWindow = new google.maps.InfoWindow({
+            content: content
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infoWindow.open(map,marker);
+        });
     }
     
     function load_markers () {
         $.getJSON("/markers.json", function(data){
             $.each(data, function(){
-                new google.maps.Marker({ position: new google.maps.LatLng(this.latitude,  this.longitude), map: map})
+                add_marker_to_map(this);
             });
-        })
+        });
     }
     
     google.maps.event.addDomListener(window, 'load', setupMap);
+    
+    // window.setTimeout(load_markers, 60000);
 });
