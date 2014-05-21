@@ -14,9 +14,9 @@
 
 html { height: 100% }
 body { height: 100%; margin: 0; padding: 0 }
-#map-canvas { height: 100% }
+.map { height: 100% }
 
-#map-canvas .centerMarker{
+.centerMarker{
   position:absolute;
   /*url of the marker*/
   background:url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;
@@ -36,12 +36,25 @@ body { height: 100%; margin: 0; padding: 0 }
     position: absolute;
     bottom: 5px;
     left: 40%;
-    z-index: 99999;
+    z-index: 2;
     width: 25%;
     height: 25%;
     border: 2px solid black;
     border-radius: 5px;
     background-color: #d0ccbf;
+}
+
+.menu-div {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 93%;
+}
+
+#menu-button {
+  position: relative;
+  width: 50px;
+  z-index: 3;
 }
 
 #marker-types{

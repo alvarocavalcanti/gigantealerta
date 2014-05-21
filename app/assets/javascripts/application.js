@@ -21,16 +21,10 @@ $(function(){
             zoom: 19,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
         $('<div/>').addClass('centerMarker').appendTo(map.getDiv())
              //do something onclick
             .click(function(){
-               // var that=$(this);
-               // if(!that.data('win')){
-               //  that.data('win',new google.maps.InfoWindow({content:'this is the center'}));
-               //  that.data('win').bindTo('position',map,'center');
-               // }
-               // that.data('win').open(map);
             });
         var trafficLayer = new google.maps.TrafficLayer();
         trafficLayer.setMap(map);
