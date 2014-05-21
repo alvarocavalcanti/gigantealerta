@@ -62,7 +62,7 @@ $(function(){
     
     var marker_types = $("#marker-types");
     
-    $("#add-marker").on('click', function(){
+    $("#menu-button").on('click', function(){
         marker_types.removeClass('hide');
     });
     

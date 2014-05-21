@@ -57,11 +57,10 @@ body { height: 100%; margin: 0; padding: 0 }
   z-index: 3;
 }
 
-#marker-types{
+#marker-types {
     padding: 5px;
-    position: absolute;
+    position: relative;
     bottom: 260px;
-    left: 44%;
     z-index: 99999;
     list-style: none inside none;
     border: 2px solid black;
