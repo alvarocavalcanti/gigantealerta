@@ -14,8 +14,8 @@
 
   #menu-items {
     position: relative;
-    z-index: 3;
-    width: 150px;
+    z-index: 4;
+    width: 100%;
   }
 
   .expanded {
@@ -31,12 +31,10 @@
   </button>
   <div class="text-center" style="width: 100%">
     <div id="menu-items" class="text-center">
-      <ul>
-        <li><button id="btn-encontro" class="btn">Encontro</button></li>
-        <li><button id="btn-conflito" class="btn">Conflito</button></li>
-        <li><button id="btn-policia" class="btn">Polícia</button></li>
-        <li><button id="btn-depedracao" class="btn">Depedração</button></li>
-      </ul>
+      <a href="#" id="btn-encontro"><img src="/assets/meetingPoint.png" alt="Encontro"></a>
+      <a href="#" id="btn-conflito"><img src="/assets/conflict.png" alt="Conflito"></a><br>
+      <a href="#" id="btn-policia"><img src="/assets/policeLine.png" alt="Polícia"></a>
+      <a href="#" id="btn-depedracao"><img src="/assets/depredation.png" alt="Depedração"></a>
     </div>
   </div>
 </div>
@@ -44,8 +42,11 @@
 <div id="map_canvas" class="map"/>
 
 <script type="text/javascript">
+
+  // -- Declarations
   
   // -- Static calls
+  //arrangeMenuItems();
   $('#menu-items').hide();
 
   // -- Declarations
@@ -71,6 +72,16 @@
 
   function buttonClicked(btnType) {
 
+  }
+
+  function arrangeMenuItems() {
+    var togglePos = $('#menu-toggle').position();
+
+    $('#btn-encontro').css({
+      position: 'absolute',
+      top: togglePos.top - $('#btn-encontro').outerHeight() + 'px',
+      left: togglePos.left - $('#btn-encontro').outerWidth() + 'px'
+    });
   }
   
   // -- Callbacks
