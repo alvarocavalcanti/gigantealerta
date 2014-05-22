@@ -44,19 +44,6 @@ body { height: 100%; margin: 0; padding: 0 }
     background-color: #d0ccbf;
 }
 
-.menu-div {
-  position: absolute;
-  width: 100%;
-  left: 0px;
-  top: 93%;
-}
-
-#menu-button {
-  position: relative;
-  width: 50px;
-  z-index: 3;
-}
-
 #marker-types {
     padding: 5px;
     position: relative;

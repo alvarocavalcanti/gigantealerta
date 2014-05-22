@@ -1,29 +1,52 @@
-<ul id="marker-types" class="hide text-center">
-  <li>
-    <a href="javascript:;" data-name="Conflict">Conflict</a>
-  </li>
-  <li>
-    <a href="javascript:;" data-name="Depredation">Depredation</a>
-  </li>
-  <li>
-    <a href="javascript:;" data-name="Meeting Point">Meeting Point</a>
-  </li>
-  <li>
-    <a href="javascript:;" data-name="Police">Police</a>
-  </li>
-  <li>
-    <a href="javascript:;" data-name="Cancel" style="color:red;">Cancel</a>
-  </li>
-</ul>
-<!--
-<a id="add-marker" href="javascript:;">
-  <%= image_tag "v-for-vinegar-bottle.png", {class: 'menu-image'} %>
-</a>
--->
-<div class="menu-div text-center">
-  <button type="button" id="menu-button" class="btn btn-default btn-lg">
-   <span class="glyphicon glyphicon-chevron-up"></span>
+<style type="text/css">
+  #menu {
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 93%;
+  }
+
+  #menu-toggle {
+    position: relative;
+    width: 50px;
+    z-index: 3;
+  }
+
+  .expanded {
+
+  }
+
+  .collapsed {
+
+  }
+</style>
+
+<div id="menu" class="text-center collapsed">
+  <button type="button" id="menu-toggle" class="btn btn-default btn-lg">
+   <span id="menu-handle-icon" class="glyphicon glyphicon-chevron-up"></span>
   </button>
 </div>
 <div id="loading" class="loading">Loading Map...</div>
 <div id="map_canvas" class="map"/>
+
+<script type="text/javascript">
+  function expandMenu() {
+    $('#menu').removeClass('collapsed');
+    $('#menu').addClass('expanded');
+  }
+
+  function collapseMenu() {
+    $('#menu').removeClass('expanded');
+    $('#menu').addClass('collapsed');
+  }
+  
+  $('#menu-toggle').on({
+    click: function () {
+      if ($('#menu').hasClass('collapsed')) {
+        expandMenu();
+      } else {
+        collapseMenu();
+      }
+    }
+  });
+</script>
