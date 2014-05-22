@@ -3,7 +3,7 @@
     position: absolute;
     width: 100%;
     left: 0px;
-    top: 93%;
+    bottom: 0px;
   }
 
   #menu-toggle {
@@ -12,12 +12,16 @@
     z-index: 3;
   }
 
-  .expanded {
+  #menu-items {
+    position: relative;
+    z-index: 3;
+    width: 150px;
+  }
 
+  .expanded {
   }
 
   .collapsed {
-
   }
 </style>
 
@@ -25,21 +29,51 @@
   <button type="button" id="menu-toggle" class="btn btn-default btn-lg">
    <span id="menu-handle-icon" class="glyphicon glyphicon-chevron-up"></span>
   </button>
+  <div class="text-center" style="width: 100%">
+    <div id="menu-items" class="text-center">
+      <ul>
+        <li><button id="btn-encontro" class="btn">Encontro</button></li>
+        <li><button id="btn-conflito" class="btn">Conflito</button></li>
+        <li><button id="btn-policia" class="btn">Polícia</button></li>
+        <li><button id="btn-depedracao" class="btn">Depedração</button></li>
+      </ul>
+    </div>
+  </div>
 </div>
 <div id="loading" class="loading">Loading Map...</div>
 <div id="map_canvas" class="map"/>
 
 <script type="text/javascript">
+  
+  // -- Static calls
+  $('#menu-items').hide();
+
+  // -- Declarations
   function expandMenu() {
     $('#menu').removeClass('collapsed');
     $('#menu').addClass('expanded');
+
+    $('#menu-handle-icon').removeClass('glyphicon-chevron-up');
+    $('#menu-handle-icon').addClass('glyphicon-chevron-down');
+
+    $('#menu-items').show('fast');
   }
 
   function collapseMenu() {
     $('#menu').removeClass('expanded');
     $('#menu').addClass('collapsed');
+
+    $('#menu-handle-icon').addClass('glyphicon-chevron-up');
+    $('#menu-handle-icon').removeClass('glyphicon-chevron-down');
+
+    $('#menu-items').hide('fast');
+  }
+
+  function buttonClicked(btnType) {
+
   }
   
+  // -- Callbacks
   $('#menu-toggle').on({
     click: function () {
       if ($('#menu').hasClass('collapsed')) {
@@ -47,6 +81,30 @@
       } else {
         collapseMenu();
       }
+    }
+  });
+
+  $('#btn-depedracao').on({
+    click: function () {
+      buttonClicked('Depedração');
+    }
+  });
+
+  $('#btn-policia').on({
+    click: function () {
+      buttonClicked('Polícia');
+    }
+  });
+
+  $('#btn-encontro').on({
+    click: function () {
+      buttonClicked('Encontro');
+    }
+  });
+
+  $('#btn-conflito').on({
+    click: function () {
+      buttonClicked('Conflito');
     }
   });
 </script>
