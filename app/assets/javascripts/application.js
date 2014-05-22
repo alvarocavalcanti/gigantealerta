@@ -73,15 +73,15 @@ $(function(){
         if (params['marker_type']=="Cancel"){
             return false;
         }
-        var listenerHandle = google.maps.event.addListener(map, 'click', function(event) {
-            params['longitude'] = event.latLng.lng();
-            params['latitude'] = event.latLng.lat();
-            params['description'] = prompt("Describe") || "";
-            $.post("/markers.json", {marker: params}, function(data){
-                add_marker_to_map(params);
-                google.maps.event.removeListener(listenerHandle);
-            });
+        var center = map.getCenter();
+        params['longitude'] = center.lng();
+        params['latitude'] = center.lat();
+        params['description'] = "";
+        $.post("/markers.json", {marker: params}, function(data){
+            add_marker_to_map(params);
+            google.maps.event.removeListener(listenerHandle);
         });
+        
     });
     
    window.setTimeout(load_markers, 60000);
