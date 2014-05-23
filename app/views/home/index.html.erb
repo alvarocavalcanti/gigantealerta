@@ -24,6 +24,14 @@
     height: 80px;
   }
 
+  #loading {
+    position: absolute;
+    top:50%;
+    width: 100%;
+    z-index:1;
+    background-color: #fa5a25;
+  }
+
   #menu-items {
     position: relative;
     z-index: 4;
@@ -38,6 +46,7 @@
 
   .collapsed {
   }
+
 </style>
 
 <div id="app-title" class="text-center">
@@ -53,7 +62,7 @@
     <%= image_tag "btn_alert_depredation_normal.png", {class: "menuitem", id: "btn-depedracao"} %>
   </div>
 </div>
-<div id="loading" class="loading">Loading Map...</div>
+<div id="loading" class="text-center">Carregando mapa...</div>
 <div id="map_canvas" class="map"/>
 
 
