@@ -66,9 +66,9 @@ $(function(){
     }
     
     function load_markers () {
+        clear_markers();
         $.getJSON("/markers.json", function(data){
             $.each(data, function(){
-                clear_markers();
                 add_marker_to_map(this);
             });
         });
