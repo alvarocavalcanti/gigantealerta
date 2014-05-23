@@ -1,4 +1,11 @@
 <style type="text/css">
+  #app-title {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    background-color: #fa5a25;
+    z-index: 10;
+  }
   #menu {
     position: absolute;
     width: 100%;
@@ -33,13 +40,17 @@
   }
 </style>
 
+<div id="app-title" class="text-center">
+  <%= image_tag "logo.png" %>
+</div>
+
 <div id="menu" class="text-center collapsed">
-  <%= image_tag "/assets/btn_button_alert_main_normal.png", {id: "menu-handle-icon"} %>
+  <%= image_tag "btn_button_alert_main_normal.png", {id: "menu-handle-icon"} %>
   <div id="menu-items" class="text-center">
-    <%= image_tag "/assets/btn_alert_meetingpoint_normal.png", {class: "menuitem", id: "btn-encontro"} %>
-    <%= image_tag "/assets/btn_alert_police_normal.png", {class: "menuitem", id: "btn-policia"} %>
-    <%= image_tag "/assets/btn_alert_conflict_normal.png", {class: "menuitem", id: "btn-conflito"} %>
-    <%= image_tag "/assets/btn_alert_depredation_normal.png", {class: "menuitem", id: "btn-depedracao"} %>
+    <%= image_tag "btn_alert_meetingpoint_normal.png", {class: "menuitem", id: "btn-encontro"} %>
+    <%= image_tag "btn_alert_police_normal.png", {class: "menuitem", id: "btn-policia"} %>
+    <%= image_tag "btn_alert_conflict_normal.png", {class: "menuitem", id: "btn-conflito"} %>
+    <%= image_tag "btn_alert_depredation_normal.png", {class: "menuitem", id: "btn-depedracao"} %>
   </div>
 </div>
 <div id="loading" class="loading">Loading Map...</div>
