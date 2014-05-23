@@ -2,10 +2,10 @@
 $(function(){
     var map, infoWindow;
     var imageMap = {
-        "Conflito": "/assets/icon_shock_black.png",
-        "Depedração": "/assets/icon_flire_black.png",
-        "Encontro": "/assets/icon_flag_black.png",
-        "Polícia": "/assets/icon_police_black.png",
+        "Conflito": "/assets/pin_conflito.png",
+        "Depedração": "/assets/pin_depedracao.png",
+        "Encontro": "/assets/pin_encontro.png",
+        "Polícia": "/assets/pin_policia.png",
     };
     function setupMap() {
       if (navigator.geolocation) {
