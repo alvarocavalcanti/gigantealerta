@@ -2,10 +2,10 @@
 $(function(){
     var map, infoWindow;
     var imageMap = {
-        "Conflito": "/assets/pin_conflito.png",
-        "Depedração": "/assets/pin_depedracao.png",
-        "Encontro": "/assets/pin_encontro.png",
-        "Polícia": "/assets/pin_policia.png",
+        "Conflito": "<%= asset_path 'pin_conflito.png' %>",
+        "Depedração": "<%= asset_path 'pin_depedracao.png' %>",
+        "Encontro": "<%= asset_path 'pin_encontro.png' %>",
+        "Polícia": "<%= asset_path 'pin_policia.png' %>",
     };
     function setupMap() {
       if (navigator.geolocation) {
@@ -106,7 +106,7 @@ $(function(){
     $('#menu').removeClass('collapsed');
     $('#menu').addClass('expanded');
 
-    $('#menu-handle-icon').attr('src', '/assets/btn_button_alert_main_pressed.png');
+    $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_pressed.png" %>');
 
     $('#menu-items').show();
   }
@@ -115,7 +115,7 @@ $(function(){
     $('#menu').removeClass('expanded');
     $('#menu').addClass('collapsed');
 
-    $('#menu-handle-icon').attr('src', '/assets/btn_button_alert_main_normal.png');
+    $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_normal.png" %>');
 
     $('#menu-items').hide();
   }
