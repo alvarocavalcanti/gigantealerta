@@ -15,6 +15,6 @@ Os incidentes são publicados em tempo real e ficarão visíveis no mapa, por at
 
 Toda a publicacao é feita de forma anônima garantindo a privacidade daqueles que desejam contribuir para o bom andamento dos eventos.
 
-Acesse aqui: [Gigante Alerta!](http://mani-fast.herokuapp.com/)
+Acesse aqui: [Gigante Alerta!](http://gigantealerta.herokuapp.com/)
 
 ![Mapa Inicial](https://raw.githubusercontent.com/alvarocavalcanti/manifast/master/app/assets/images/Mockup02.png)
