@@ -2,10 +2,10 @@
 $(function(){
     var map, infoWindow;
     var imageMap = {
-        "Conflict": "/assets/conflict.png",
-        "Depredation": "/assets/depredation.png",
-        "Meeting Point": "/assets/meetingPoint.png",
-        "Police": "/assets/policeLine.png",
+        "Conflito": "/assets/icon_shock_black.png",
+        "Depedração": "/assets/icon_flire_black.png",
+        "Encontro": "/assets/icon_flag_black.png",
+        "Polícia": "/assets/icon_police_black.png",
     };
     function setupMap() {
       if (navigator.geolocation) {
@@ -39,7 +39,10 @@ $(function(){
     }
     
     function add_marker_to_map(point){
-        var marker = new google.maps.Marker({ position: new google.maps.LatLng(point.latitude,  point.longitude), map: map, icon: imageMap[point.marker_type]}),
+        var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(point.latitude,  point.longitude),
+                map: map,
+                icon: imageMap[point.marker_type]}),
             infoWindow,
             content = "<b>"+ point.marker_type +"</b><br/>" + point.description;
         infoWindow = new google.maps.InfoWindow({
@@ -85,4 +88,115 @@ $(function(){
     });
     
    window.setTimeout(load_markers, 60000);
+
+
+
+
+
+
+
+/* This part comes from index.html.erb, MERGE NEEDED */
+  // -- Declarations
+  
+  // -- Static calls
+  $('#menu-items').hide();
+
+  // -- Declarations
+  function expandMenu() {
+    $('#menu').removeClass('collapsed');
+    $('#menu').addClass('expanded');
+
+    $('#menu-handle-icon').attr('src', '/assets/btn_button_alert_main_pressed.png');
+
+    $('#menu-items').show();
+  }
+
+  function collapseMenu() {
+    $('#menu').removeClass('expanded');
+    $('#menu').addClass('collapsed');
+
+    $('#menu-handle-icon').attr('src', '/assets/btn_button_alert_main_normal.png');
+
+    $('#menu-items').hide();
+  }
+
+  function buttonClicked(btnType) {
+    console.log("button clicked"+btnType);
+    var params = {}, element = $(this);
+    params['marker_type'] = btnType;
+    var center = map.getCenter();
+    params['longitude'] = center.lng();
+    params['latitude'] = center.lat();
+    params['description'] = "";
+    $.post("/markers.json", {marker: params}, function(data){
+        add_marker_to_map(params);
+    });
+  }
+
+  function arrangeMenuItems() {
+    var togglePos = $('#menu-handle-icon').offset();
+    var toggleTop = togglePos.top;
+    var toggleLeft = togglePos.left;
+    var menuItemWidth = 76;
+    var menuItemHeight = 77;
+
+    // handle = top -4, width 68px
+
+    $('#btn-encontro').css({
+      top: toggleTop+ 'px',
+      left: Math.round(toggleLeft - menuItemWidth) + 'px'
+    });
+
+    $('#btn-policia').css({
+      top: Math.round(toggleTop - (menuItemHeight / 2)) + 'px', // 496
+      left: Math.round(toggleLeft - (menuItemWidth / 2)) + 'px' // 117
+    });
+
+    // $('#btn-conflito').css({
+    //   position: 'absolute',
+    //   top: (togglePos.top - ($('#btn-conflito').height() * 2) ) + 'px',
+    //   left: togglePos.left - ($('#btn-conflito').outerWidth() * 0.5) + 'px'
+    // });
+    // $('#btn-depedracao').css({
+    //   position: 'absolute',
+    //   top: (togglePos.top - $('#btn-depedracao').height()) + 'px',
+    //   left: togglePos.left + $('#btn-depedracao').outerWidth() + 'px'
+    // });
+  }
+  
+  // -- Callbacks
+  $('#menu-handle-icon').on({
+    click: function () {
+      if ($('#menu').hasClass('collapsed')) {
+        expandMenu();
+      } else {
+        collapseMenu();
+      }
+    }
+  });
+
+  $('#btn-depedracao').on({
+    click: function () {
+      buttonClicked('Depedração');
+    }
+  });
+
+  $('#btn-policia').on({
+    click: function () {
+      buttonClicked('Polícia');
+    }
+  });
+
+  $('#btn-encontro').on({
+    click: function () {
+      buttonClicked('Encontro');
+    }
+  });
+
+  $('#btn-conflito').on({
+    click: function () {
+      buttonClicked('Conflito');
+    }
+  });
+
 });
