@@ -8,14 +8,22 @@
 
   #menu-toggle {
     position: relative;
-    width: 50px;
     z-index: 3;
+  }
+
+  #menu-handle-icon {
+    position: relative;
+    z-index: 4;
+    height: 80px;
   }
 
   #menu-items {
     position: relative;
     z-index: 4;
-    width: 100%;
+  }
+
+  .menuitem {
+    height: 80px;
   }
 
   .expanded {
@@ -26,16 +34,12 @@
 </style>
 
 <div id="menu" class="text-center collapsed">
-  <button type="button" id="menu-toggle" class="btn btn-default btn-lg">
-   <span id="menu-handle-icon" class="glyphicon glyphicon-chevron-up"></span>
-  </button>
-  <div class="text-center" style="width: 100%">
-    <div id="menu-items" class="text-center">
-      <a href="#" id="btn-encontro"><img src="/assets/meetingPoint.png" alt="Encontro"></a>
-      <a href="#" id="btn-conflito"><img src="/assets/conflict.png" alt="Conflito"></a><br>
-      <a href="#" id="btn-policia"><img src="/assets/policeLine.png" alt="Polícia"></a>
-      <a href="#" id="btn-depedracao"><img src="/assets/depredation.png" alt="Depedração"></a>
-    </div>
+  <img src="/assets/btn_button_alert_main_normal.png" alt="Menu" id="menu-handle-icon">
+  <div id="menu-items" class="text-center">
+    <img class="menuitem" id="btn-encontro" src="/assets/btn_alert_meetingpoint_normal.png" alt="Encontro">
+    <img class="menuitem" id="btn-policia" src="/assets/btn_alert_police_normal.png" alt="Polícia">
+    <img class="menuitem" id="btn-conflito" src="/assets/btn_alert_conflict_normal.png" alt="Conflito">
+    <img class="menuitem" id="btn-depedracao" src="/assets/btn_alert_depredation_normal.png" alt="Depedração">
   </div>
 </div>
 <div id="loading" class="loading">Loading Map...</div>
@@ -46,7 +50,6 @@
   // -- Declarations
   
   // -- Static calls
-  //arrangeMenuItems();
   $('#menu-items').hide();
 
   // -- Declarations
@@ -54,20 +57,18 @@
     $('#menu').removeClass('collapsed');
     $('#menu').addClass('expanded');
 
-    $('#menu-handle-icon').removeClass('glyphicon-chevron-up');
-    $('#menu-handle-icon').addClass('glyphicon-chevron-down');
+    $('#menu-handle-icon').attr('src', '/assets/btn_button_alert_main_pressed.png');
 
-    $('#menu-items').show('fast');
+    $('#menu-items').show();
   }
 
   function collapseMenu() {
     $('#menu').removeClass('expanded');
     $('#menu').addClass('collapsed');
 
-    $('#menu-handle-icon').addClass('glyphicon-chevron-up');
-    $('#menu-handle-icon').removeClass('glyphicon-chevron-down');
+    $('#menu-handle-icon').attr('src', '/assets/btn_button_alert_main_normal.png');
 
-    $('#menu-items').hide('fast');
+    $('#menu-items').hide();
   }
 
   function buttonClicked(btnType) {
@@ -75,17 +76,38 @@
   }
 
   function arrangeMenuItems() {
-    var togglePos = $('#menu-toggle').position();
+    var togglePos = $('#menu-handle-icon').offset();
+    var toggleTop = togglePos.top;
+    var toggleLeft = togglePos.left;
+    var menuItemWidth = 76;
+    var menuItemHeight = 77;
+
+    // handle = top -4, width 68px
 
     $('#btn-encontro').css({
-      position: 'absolute',
-      top: togglePos.top - $('#btn-encontro').outerHeight() + 'px',
-      left: togglePos.left - $('#btn-encontro').outerWidth() + 'px'
+      top: toggleTop+ 'px',
+      left: Math.round(toggleLeft - menuItemWidth) + 'px'
     });
+
+    $('#btn-policia').css({
+      top: Math.round(toggleTop - (menuItemHeight / 2)) + 'px', // 496
+      left: Math.round(toggleLeft - (menuItemWidth / 2)) + 'px' // 117
+    });
+
+    // $('#btn-conflito').css({
+    //   position: 'absolute',
+    //   top: (togglePos.top - ($('#btn-conflito').height() * 2) ) + 'px',
+    //   left: togglePos.left - ($('#btn-conflito').outerWidth() * 0.5) + 'px'
+    // });
+    // $('#btn-depedracao').css({
+    //   position: 'absolute',
+    //   top: (togglePos.top - $('#btn-depedracao').height()) + 'px',
+    //   left: togglePos.left + $('#btn-depedracao').outerWidth() + 'px'
+    // });
   }
   
   // -- Callbacks
-  $('#menu-toggle').on({
+  $('#menu-handle-icon').on({
     click: function () {
       if ($('#menu').hasClass('collapsed')) {
         expandMenu();
