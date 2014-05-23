@@ -131,6 +131,8 @@ $(function(){
     $.post("/markers.json", {marker: params}, function(data){
         add_marker_to_map(params);
     });
+
+    collapseMenu();
   }
 
   function arrangeMenuItems() {
