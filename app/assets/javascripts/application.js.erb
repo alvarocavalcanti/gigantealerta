@@ -1,7 +1,13 @@
-
 $(function(){
     var map, infoWindow;
-    var imageMap = {
+    var markers = [];
+    google.maps.Map.prototype.clearMarkers = function() {
+        for(var i=0; i<markers.length; i++){
+          markers[i].setMap(null);
+        }
+        markers = new Array();
+   };
+   var imageMap = {
         "Conflito": "<%= asset_path 'pin_conflito.png' %>",
         "Depedração": "<%= asset_path 'pin_depedracao.png' %>",
         "Encontro": "<%= asset_path 'pin_encontro.png' %>",
@@ -30,6 +36,7 @@ $(function(){
         trafficLayer.setMap(map);
 
 
+        google.maps.event.addListener(map, 'dragend', function() { load_markers(); } );
         google.maps.event.addDomListener(window, 'load', initialize);
 
         infoWindow = new google.maps.InfoWindow();
@@ -51,15 +58,22 @@ $(function(){
         google.maps.event.addListener(marker, 'click', function() {
           infoWindow.open(map,marker);
         });
+        markers.push(marker);
+    }
+
+    function clear_markers(){
+      map.clearMarkers();
     }
     
     function load_markers () {
         $.getJSON("/markers.json", function(data){
             $.each(data, function(){
+                clear_markers();
                 add_marker_to_map(this);
             });
         });
     }
+
     
     google.maps.event.addDomListener(window, 'load', setupMap);
     
