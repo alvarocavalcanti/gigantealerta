@@ -6,6 +6,11 @@
     background-color: #fa5a25;
     z-index: 10;
   }
+
+  #img-logo {
+    height: 40px;
+  }
+
   #menu {
     position: absolute;
     width: 100%;
@@ -50,7 +55,7 @@
 </style>
 
 <div id="app-title" class="text-center">
-  <%= image_tag "logo.png" %>
+  <%= image_tag "logo.png", {id: 'img-logo'} %>
 </div>
 
 <div id="menu" class="text-center collapsed">
