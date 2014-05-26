@@ -22,6 +22,7 @@ $(function(){
       }   
 
     function initialize(position) {
+        var minZoomLevel = 12;
         var mapOptions = {
             center: new google.maps.LatLng(position.coords.latitude,  position.coords.longitude),
             zoom: 19,
@@ -38,6 +39,10 @@ $(function(){
 
         google.maps.event.addListener(map, 'dragend', function() { load_markers(); } );
         google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addListener(map, 'zoom_changed', function() {
+          // alert('Zoom: ' + map.getZoom());
+          if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+        });
 
         infoWindow = new google.maps.InfoWindow();
         load_markers();
@@ -122,7 +127,7 @@ $(function(){
 
     $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_pressed.png" %>');
 
-    $('#menu-items').show();
+    $('#menu-items').show('fast');
   }
 
   function collapseMenu() {
@@ -131,7 +136,7 @@ $(function(){
 
     $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_normal.png" %>');
 
-    $('#menu-items').hide();
+    $('#menu-items').hide('fast');
   }
 
   function buttonClicked(btnType) {
