@@ -57,7 +57,8 @@ $(function(){
         trafficLayer.setMap(map);
 
 
-        google.maps.event.addListener(map, 'dragend', function() { load_markers(); } );
+        google.maps.event.addListener(map, 'dragend', function() { onMapDragEnd(); } );
+        google.maps.event.addListener(map, 'dragstart', function() { onMapDragStart(); } );
         google.maps.event.addDomListener(window, 'load', initialize);
         google.maps.event.addListener(map, 'zoom_changed', function() {
           // alert('Zoom: ' + map.getZoom());
@@ -68,6 +69,14 @@ $(function(){
         load_markers();
 
         $('#loading').addClass('hide');
+    }
+
+    function onMapDragEnd() {
+      load_markers();
+    }
+    
+    function onMapDragStart() {
+      collapseMenu();
     }
 
     function add_marker_to_map(point){
