@@ -1,3 +1,10 @@
+//= depend_on_asset "pin_conflito.png"
+//= depend_on_asset "pin_depedracao.png"
+//= depend_on_asset "pin_encontro.png"
+//= depend_on_asset "pin_policia.png"
+//= depend_on_asset "btn_button_alert_main_pressed.png"
+//= depend_on_asset "btn_button_alert_main_normal.png"
+
 $(function(){
     var map, infoWindow;
     var markers = [];
@@ -142,7 +149,7 @@ $(function(){
 
     $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_pressed.png" %>');
 
-    $('#menu-items').show('fast');
+    $('#menu-items').show('slow');
   }
 
   function collapseMenu() {
@@ -151,7 +158,7 @@ $(function(){
 
     $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_normal.png" %>');
 
-    $('#menu-items').hide('fast');
+    $('#menu-items').hide('slow');
   }
 
   function buttonClicked(btnType) {
