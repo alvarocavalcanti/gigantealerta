@@ -39,7 +39,7 @@ $(function(){
         } else {
           alert("Geolocation not available");
         }
-      }   
+      }
 
     function initialize(position) {
         var minZoomLevel = 12;
@@ -69,7 +69,7 @@ $(function(){
 
         $('#loading').addClass('hide');
     }
-    
+
     function add_marker_to_map(point){
         var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(point.latitude,  point.longitude),
@@ -91,7 +91,7 @@ $(function(){
         map.clearMarkers();
       }
     }
-    
+
     function load_markers () {
         clear_markers();
         $.getJSON("/markers.json", function(data){
@@ -101,15 +101,15 @@ $(function(){
         });
     }
 
-    
+
     google.maps.event.addDomListener(window, 'load', setupMap);
-    
+
     var marker_types = $("#marker-types");
-    
+
     $("#menu-button").on('click', function(){
         marker_types.removeClass('hide');
     });
-    
+
     marker_types.find("a").on("click", function(){
         var params = {}, element = $(this);
         params['marker_type'] = element.attr("data-name");
@@ -125,20 +125,14 @@ $(function(){
             add_marker_to_map(params);
             google.maps.event.removeListener(listenerHandle);
         });
-        
+
     });
-    
+
    window.setTimeout(load_markers, 60000);
-
-
-
-
-
-
 
 /* This part comes from index.html.erb, MERGE NEEDED */
   // -- Declarations
-  
+
   // -- Static calls
   $('#menu-items').hide();
 
@@ -146,19 +140,15 @@ $(function(){
   function expandMenu() {
     $('#menu').removeClass('collapsed');
     $('#menu').addClass('expanded');
-
-    $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_pressed.png" %>');
-
-    $('#menu-items').show('slow');
+    $('#menu-items').show();
+    $('.menu-handle-icon').hide();
   }
 
   function collapseMenu() {
     $('#menu').removeClass('expanded');
     $('#menu').addClass('collapsed');
-
-    $('#menu-handle-icon').attr('src', '<%= asset_path "btn_button_alert_main_normal.png" %>');
-
-    $('#menu-items').hide('slow');
+    $('#menu-items').hide();
+    $('.menu-handle-icon').show();
   }
 
   function buttonClicked(btnType) {
@@ -177,7 +167,7 @@ $(function(){
   }
 
   function arrangeMenuItems() {
-    var togglePos = $('#menu-handle-icon').offset();
+    var togglePos = $('.menu-handle-icon').offset();
     var toggleTop = togglePos.top;
     var toggleLeft = togglePos.left;
     var menuItemWidth = 76;
@@ -194,28 +184,14 @@ $(function(){
       top: Math.round(toggleTop - (menuItemHeight / 2)) + 'px', // 496
       left: Math.round(toggleLeft - (menuItemWidth / 2)) + 'px' // 117
     });
-
-    // $('#btn-conflito').css({
-    //   position: 'absolute',
-    //   top: (togglePos.top - ($('#btn-conflito').height() * 2) ) + 'px',
-    //   left: togglePos.left - ($('#btn-conflito').outerWidth() * 0.5) + 'px'
-    // });
-    // $('#btn-depedracao').css({
-    //   position: 'absolute',
-    //   top: (togglePos.top - $('#btn-depedracao').height()) + 'px',
-    //   left: togglePos.left + $('#btn-depedracao').outerWidth() + 'px'
-    // });
   }
-  
+
   // -- Callbacks
-  $('#menu-handle-icon').on({
-    click: function () {
-      if ($('#menu').hasClass('collapsed')) {
-        expandMenu();
-      } else {
-        collapseMenu();
-      }
-    }
+  $('.menu-handle-icon').on({
+    click: function () { expandMenu(); }
+  });
+  $('.menu-handle-icon-pressed').on({
+    click: function () { collapseMenu(); }
   });
 
   $('#btn-depedracao').on({

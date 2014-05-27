@@ -10,6 +10,7 @@
   #menu {
     position: absolute;
     width: 100%;
+    width: 100%;
     left: 0px;
     bottom: 5px;
   }
@@ -19,15 +20,9 @@
     z-index: 3;
   }
 
-  #menu-handle-icon {
-    position: relative;
-    z-index: 4;
-  }
-
   #loading {
     position: absolute;
     top:50%;
-    width: 100%;
     z-index:1;
     background-color: #fa5a25;
   }
@@ -35,6 +30,24 @@
   #menu-items {
     position: relative;
     z-index: 4;
+  }
+
+  .menu-handle-icon {
+    position: relative;
+    z-index: 4;
+  }
+
+  .menu-items-top img {
+    margin-left: -3px;
+    margin-right: -3px;
+    margin-bottom: -25px;
+    height: 100%;
+  }
+
+  .menu-items-down img {
+    margin-left: -3px;
+    margin-right: -3px;
+    margin-bottom: 0px;
   }
 
   .menuitem {
@@ -53,12 +66,19 @@
 </div>
 
 <div id="menu" class="text-center collapsed">
-  <%= image_tag "btn_button_alert_main_normal.png", {id: "menu-handle-icon"} %>
-  <div id="menu-items" class="text-center">
-    <%= image_tag "btn_alert_meetingpoint_normal.png", {class: "menuitem", id: "btn-encontro"} %>
-    <%= image_tag "btn_alert_police_normal.png", {class: "menuitem", id: "btn-policia"} %>
-    <%= image_tag "btn_alert_conflict_normal.png", {class: "menuitem", id: "btn-conflito"} %>
-    <%= image_tag "btn_alert_depredation_normal.png", {class: "menuitem", id: "btn-depedracao"} %>
+  <div id="menu" class="text-center collapsed">
+    <%= image_tag "btn_button_alert_main_normal.png", {class: "menu-handle-icon"} %>
+    <div id="menu-items" class="text-center">
+      <div class="menu-items-top">
+        <%= image_tag "btn_alert_police_normal.png", {class: "menuitem", id: "btn-policia"} %>
+        <%= image_tag "btn_alert_conflict_normal.png", {class: "menuitem", id: "btn-conflito"} %>
+      </div>
+      <div class="menu-items-down">
+        <%= image_tag "btn_alert_meetingpoint_normal.png", {class: "menuitem", id: "btn-encontro"} %>
+        <%= image_tag "btn_button_alert_main_pressed.png", {class: "menu-handle-icon-pressed"} %>
+        <%= image_tag "btn_alert_depredation_normal.png", {class: "menuitem", id: "btn-depedracao"} %>
+      </div>
+    </div>
   </div>
 </div>
 <div id="loading" class="text-center">Carregando mapa...</div>
