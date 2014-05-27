@@ -1,3 +1,5 @@
+[![Build Status](https://snap-ci.com/alvarocavalcanti/manifast/branch/master/build_image)](https://snap-ci.com/alvarocavalcanti/manifast/branch/master)
+
 # Gigante Alerta
 
 Nós acreditamos que nos dias atuais é preciso se unir e reinvidicar por aquilo que modifica positivamente nossa sociedade. Pensando nisso, criamos o Gigante Alerta.
