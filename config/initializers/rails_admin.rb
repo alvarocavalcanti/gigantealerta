@@ -11,8 +11,12 @@ RailsAdmin.config do |config|
   # or for a more dynamic name:
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
-  # RailsAdmin may need a way to know who the current user is]
-  config.current_user_method { current_admin } # auto-generated
+  ## == Devise ==
+  ## Authentication with Devise
+  config.authenticate_with do
+    warden.authenticate! scope: :admin
+  end
+  config.current_user_method &:current_admin
 
 
   config.model 'Marker' do
