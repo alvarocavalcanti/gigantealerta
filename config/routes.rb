@@ -5,8 +5,9 @@ Vinegar::Application.routes.draw do
 
   resources :markers, :only => [:index, :create, :show]
 
-
   root :to => 'home#index'
+
+  get 'charts' => 'chart#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

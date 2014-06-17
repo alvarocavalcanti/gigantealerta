@@ -5,4 +5,5 @@ class Marker < ActiveRecord::Base
   validates_presence_of :longitude
 
   scope :created_in_last_30_minutes, lambda { {:conditions => ["created_at > ?", 31.minutes.ago ] } }
+  scope :created_in_last_24_hours, lambda { {:conditions => ["created_at > ?", 24.hours.ago ] } }
 end

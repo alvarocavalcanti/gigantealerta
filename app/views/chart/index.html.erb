@@ -1,0 +1,22 @@
+<h1>Markers from the Last 24h</h1>
+
+<table>
+  <tr>
+    <th>Latitude</th>
+    <th>Longitude</th>
+  </tr>
+
+<% @markers_last_day.each do |marker| %>
+  <tr>
+    <td><%= marker.latitude %></td>
+    <td><%= marker.longitude %></td>
+  </tr>
+<% end %>
+</table>
+
+<% pie_chart( [ [:eggs, 1.99, 3], [:bacon, 3.99, 1] ], { :height => 300, :is3D => true }, { :id => "breakfastChart" } ) do |c| -%>
+  <% c.title "breakfast" %>
+
+  <% c.label "ingredient", lambda { |e| "#{e.last} #{e.first} for #{number_to_currency(e[1])}" } %>
+  <% c.value "amount", :last %>
+<% end -%>

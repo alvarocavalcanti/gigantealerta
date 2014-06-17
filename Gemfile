@@ -28,6 +28,8 @@ gem 'shoulda'
 gem 'timecop'
 gem 'pry'
 
+gem 'google_charts'
+
 gem 'bootstrap-sass', '~> 3.1.1'
 group :development do
 	gem 'rails_layout'
