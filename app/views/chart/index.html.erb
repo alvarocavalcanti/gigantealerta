@@ -1,22 +1,50 @@
-<h1>Markers from the Last 24h</h1>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  // Load the Visualization API and the piechart package.
+  google.load('visualization', '1.0', {'packages':['corechart']});
 
-<table>
-  <tr>
-    <th>Latitude</th>
-    <th>Longitude</th>
-  </tr>
+  // Set a callback to run when the Google Visualization API is loaded.
+  google.setOnLoadCallback(loadMarkerData);
 
-<% @markers_last_day.each do |marker| %>
-  <tr>
-    <td><%= marker.latitude %></td>
-    <td><%= marker.longitude %></td>
-  </tr>
-<% end %>
-</table>
+  // Callback that creates and populates a data table,
+  // instantiates the pie chart, passes in the data and
+  // draws it.
+  function drawChart(dataArray) {
 
-<% pie_chart( [ [:eggs, 1.99, 3], [:bacon, 3.99, 1] ], { :height => 300, :is3D => true }, { :id => "breakfastChart" } ) do |c| -%>
-  <% c.title "breakfast" %>
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows([
+      ['Mushrooms', 3],
+      ['Onions', 1],
+      ['Olives', 1],
+      ['Zucchini', 1],
+      ['Pepperoni', 2]
+    ]);
 
-  <% c.label "ingredient", lambda { |e| "#{e.last} #{e.first} for #{number_to_currency(e[1])}" } %>
-  <% c.value "amount", :last %>
-<% end -%>
+    // Set chart options
+    var options = {'title':'How Much Pizza I Ate Last Night',
+                   'width':400,
+                   'height':300};
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+
+  function loadMarkerData() {
+    $.ajax({
+      type: "GET",
+      url: "/markers24h",
+      data: { format: "json" },
+      success: function (markersarray) {
+        drawChart(markersarray);
+      },
+      error: function (data) {
+        console.log(data.response)
+      }
+    });
+  }
+</script> 
+ <div id="chart_div"></div>

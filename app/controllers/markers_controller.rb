@@ -2,12 +2,23 @@ class MarkersController < ApplicationController
   # GET /markers
   # GET /markers.json
   def index
-    @markers = Marker.created_in_last_30_minutes.all
+    @markers = Marker.created_in_last_30min.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json {
         render json: @markers.to_json(:only => [:latitude, :longitude, :marker_type, :description])
+      }
+    end
+  end
+
+  def markers_in_the_last_24h
+    @markers_last_24h = Marker.created_in_last_24h.all
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @markers_last_24h.to_json(:only => [:latitude, :longitude, :marker_type, :description])
       }
     end
   end

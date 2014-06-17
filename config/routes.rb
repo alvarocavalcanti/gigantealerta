@@ -9,6 +9,8 @@ Vinegar::Application.routes.draw do
 
   get 'charts' => 'chart#index'
 
+  get 'markers24h' => 'markers#markers_in_the_last_24h'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
