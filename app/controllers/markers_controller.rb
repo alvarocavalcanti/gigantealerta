@@ -7,7 +7,7 @@ class MarkersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json {
-        render json: @markers.to_json(:only => [:latitude, :longitude, :marker_type, :description])
+        render json: @markers.to_json(:only => [:id, :latitude, :longitude, :marker_type, :description])
       }
     end
   end

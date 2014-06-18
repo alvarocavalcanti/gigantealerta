@@ -81,6 +81,7 @@ $(function(){
 
     function add_marker_to_map(point){
         var marker = new google.maps.Marker({
+                id: point.id,
                 position: new google.maps.LatLng(point.latitude,  point.longitude),
                 map: map,
                 icon: imageMap[point.marker_type]}),
@@ -92,7 +93,10 @@ $(function(){
         google.maps.event.addListener(marker, 'click', function() {
           infoWindow.open(map,marker);
         });
-        markers.push(marker);
+
+        if(markers.filter(function(m) { return marker.id == m.id; }).length == 0) {
+          markers.push(marker);
+        }
     }
 
     function clear_markers(){
@@ -102,7 +106,6 @@ $(function(){
     }
 
     function load_markers () {
-        clear_markers();
         $.getJSON("/markers.json", function(data){
             $.each(data, function(){
                 add_marker_to_map(this);
@@ -169,7 +172,7 @@ $(function(){
     params['latitude'] = center.lat();
     params['description'] = "";
     $.post("/markers.json", {marker: params}, function(data){
-        add_marker_to_map(params);
+        add_marker_to_map(data);
     });
 
     collapseMenu();
